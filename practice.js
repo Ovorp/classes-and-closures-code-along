@@ -15,17 +15,17 @@
 
 */
 
-function count(num){
-    // Code here
-};
-
+function count(number) {
+  let num = number;
+  return function () {
+    return ++number;
+  };
+}
 
 // Do not edit the code below.
 var newClosure = count(5);
 
 // Do not edit the code above.
-
-
 
 ////////// PROBLEM 2 //////////
 /* 
@@ -38,18 +38,19 @@ var newClosure = count(5);
   greetingClosure('Hello')
   
 */
- 
-// Code here
-    
-    
 
+function greeting(name) {
+  return function (greet) {
+    return `${greet} ${name}`;
+  };
+}
+
+// Code here
 
 // After you have created the greeting function above, uncomment the code below, but do not edit it
 
-// const greetingClosure = greeting('Henry');
-// let greet = greetingClosure('Hello')
-    
-
+const greetingClosure = greeting('Henry');
+let greet = greetingClosure('Hello');
 
 ////////// PROBLEM 3 //////////
 /* 
@@ -62,10 +63,30 @@ var newClosure = count(5);
   They should use the parameter to change the original num variable (by adding, subtracting, multiplying and dividing)
 
 */
+function calculatorCreator() {
+  let num = 0;
+  function add(number) {
+    return (num += number);
+  }
+  function subtract(number) {
+    return (num -= number);
+  }
+  function multiply(number) {
+    return (num *= number);
+  }
+  function divide(number) {
+    return (num /= number);
+  }
+
+  return {
+    add,
+    subtract,
+    multiply,
+    divide,
+  };
+}
 
 // Code here
-
-
 
 ////////// PROBLEM 4 //////////
 /* 
@@ -73,10 +94,14 @@ var newClosure = count(5);
   The class should have a constructor that accepts three parameters: happiness, energy, and behavior
   
 */
-
+class Puppy {
+  constructor(happiness, energy, behavior) {
+    this.happiness = happiness;
+    this.energy = energy;
+    this.behavior = behavior;
+  }
+}
 // Code here
-
-
 
 ////////// PROBLEM 5 //////////
 /* 
@@ -88,9 +113,20 @@ var newClosure = count(5);
 */
 
 // Code here
+class Car {
+  constructor(manufacturer, year) {
+    this.manufacturer = manufacturer;
+    this.year = year;
+  }
 
+  displayManufacturer() {
+    return this.manufacturer;
+  }
 
-
+  displayYear() {
+    return this.year;
+  }
+}
 ////////// PROBLEM 6 //////////
 /* 
   Using the Puppy class from Problem 4 as a template, create a new class called Panda
@@ -101,5 +137,17 @@ var newClosure = count(5);
     - takesNap: This method should decrease energy by 45 and increase behavior by 15
 
 */
-
+class Panda extends Puppy {
+  constructor(happiness, energy, behavior) {
+    super(happiness, energy, behavior);
+  }
+  getsTreat() {
+    this.happiness += 20;
+    return this.happiness;
+  }
+  takesNap() {
+    this.energy -= 45;
+    this.behavior += 15;
+  }
+}
 // Code here
